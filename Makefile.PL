@@ -6,6 +6,7 @@ author   'Sebastian Willing <sewi@cpan.org>';
 license  'gpl';
 
 build_requires 'Test::More';
+build_requires 'Module::Install';
 
 auto_install;
 

@@ -1,4 +1,8 @@
 Revision history for Format-Human-Bytes
 
+0.01    TBD
+        Reformatting the source
+        Adding Module::Install as build dep
+
 0.01    09/24/2009
         First version, released on an unsuspecting world.

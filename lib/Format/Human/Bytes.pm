@@ -9,12 +9,11 @@ Format::Human::Bytes - Format a bytecount and make it human readable
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =cut
 
-our $VERSION = '0.01';
-
+our $VERSION = '0.02';
 
 =head1 SYNOPSIS
 
@@ -44,13 +43,13 @@ Creates and returns a Format::Human::Bytes - object.
 
 =cut
 
-sub new { # URL
+sub new {    # URL
 
-	my $class = shift;
-	my $Scalar;
-	my $self = bless \$Scalar, $class;
-	
-	return $self;
+    my $class = shift;
+    my $Scalar;
+    my $self = bless \$Scalar, $class;
+
+    return $self;
 }
 
 =head2 base2
@@ -75,16 +74,21 @@ how computers see the world.
 =cut
 
 sub base2 {
-        shift if ref($_[0]) ne ''; # Use me as a method if you like
-        shift if defined($_[0]) and ($_[0] eq 'Format::Human::Bytes'); # Use me as a method if you like
+    shift if ref( $_[0] ) ne '';    # Use me as a method if you like
+    shift
+      if defined( $_[0] )
+          and ( $_[0] eq 'Format::Human::Bytes' )
+    ;                               # Use me as a method if you like
 
-	my $Bytes = $_[0] || 0;
-	if    ( $Bytes > 8192000000000 ) { return int( $Bytes / 1099511627776 ) . "TB"; }
-	elsif ( $Bytes > 8192000000 )    { return int( $Bytes / 1073741824 ) . "GB"; }
-	elsif ( $Bytes > 8192000 )       { return int( $Bytes / 1048576 ) . "MB"; }
-	elsif ( $Bytes > 8192 )          { return int( $Bytes / 1024 ) . "kB"; }
-	elsif ( $Bytes == 0 )            { return "0"; }
-	else                             { return $Bytes . "B"; }
+    my $Bytes = $_[0] || 0;
+    if ( $Bytes > 8192000000000 ) {
+        return int( $Bytes / 1099511627776 ) . "TB";
+    }
+    elsif ( $Bytes > 8192000000 ) { return int( $Bytes / 1073741824 ) . "GB"; }
+    elsif ( $Bytes > 8192000 )    { return int( $Bytes / 1048576 ) . "MB"; }
+    elsif ( $Bytes > 8192 )       { return int( $Bytes / 1024 ) . "kB"; }
+    elsif ( $Bytes == 0 )         { return "0"; }
+    else                          { return $Bytes . "B"; }
 }
 
 =head2 base10
@@ -110,16 +114,21 @@ it's wrong for computers.
 =cut
 
 sub base10 {
-        shift if ref($_[0]) ne ''; # Use me as a method if you like
-        shift if defined($_[0]) and ($_[0] eq 'Format::Human::Bytes'); # Use me as a method if you like
+    shift if ref( $_[0] ) ne '';    # Use me as a method if you like
+    shift
+      if defined( $_[0] )
+          and ( $_[0] eq 'Format::Human::Bytes' )
+    ;                               # Use me as a method if you like
 
-	my $Bytes = $_[0] || 0;
-	if    ( $Bytes > 8192000000000 ) { return int( $Bytes / 1000000000000 ) . "TB"; }
-	elsif ( $Bytes > 8192000000 )    { return int( $Bytes / 1000000000 ) . "GB"; }
-	elsif ( $Bytes > 8192000 )       { return int( $Bytes / 1000000 ) . "MB"; }
-	elsif ( $Bytes > 8192 )          { return int( $Bytes / 1000 ) . "kB"; }
-	elsif ( $Bytes == 0 )            { return "0"; }
-	else                             { return $Bytes . "B"; }
+    my $Bytes = $_[0] || 0;
+    if ( $Bytes > 8192000000000 ) {
+        return int( $Bytes / 1000000000000 ) . "TB";
+    }
+    elsif ( $Bytes > 8192000000 ) { return int( $Bytes / 1000000000 ) . "GB"; }
+    elsif ( $Bytes > 8192000 )    { return int( $Bytes / 1000000 ) . "MB"; }
+    elsif ( $Bytes > 8192 )       { return int( $Bytes / 1000 ) . "kB"; }
+    elsif ( $Bytes == 0 )         { return "0"; }
+    else                          { return $Bytes . "B"; }
 }
 
 =head1 AUTHOR
@@ -175,4 +184,4 @@ This program is released under the following license: gpl
 
 =cut
 
-1; # End of Format::Human::Bytes
+1;    # End of Format::Human::Bytes
