@@ -1,8 +1,9 @@
 Changes
-MANIFEST
-Makefile.PL
-README
 lib/Format/Human/Bytes.pm
+Makefile.PL
+MANIFEST
+META.yml
+README
 t/00-load.t
-t/pod-coverage.t
-t/pod.t
+t/01-base2.t
+t/02-base10.t

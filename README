@@ -2,6 +2,8 @@ Format-Human-Bytes
 
 This module is used to convert bytecount values to human-readable strings.
 
+This is my first published Perl module, so please be patient. Thank :-)
+
 INSTALLATION
 
 To install this module, run the following commands:

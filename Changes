@@ -1,6 +1,9 @@
 Revision history for Format-Human-Bytes
 
-0.01    TBD
+0.03    09/26/2009
+        Fixed installer problem
+
+0.02    09/25/2009
         Reformatting the source
         Adding Module::Install as build dep
 
