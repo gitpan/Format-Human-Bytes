@@ -1,11 +1,16 @@
 Revision history for Format-Human-Bytes
 
-0.03    09/26/2009
+0.04    2009.09.29
+        Allow decimals
+        Rewrote and improved the tests
+        Another installer fix which should stop the "unknown" test results
+
+0.03    2009.09.26
         Fixed installer problem
 
-0.02    09/25/2009
+0.02    2009.09.25
         Reformatting the source
         Adding Module::Install as build dep
 
-0.01    09/24/2009
+0.01    2009.09.24
         First version, released on an unsuspecting world.

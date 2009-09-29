@@ -13,7 +13,7 @@ Version 0.02
 
 =cut
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 =head1 SYNOPSIS
 
@@ -23,15 +23,15 @@ humans than a simple bytecount.
 
     use Format::Human::Bytes;
 
-    $readable = Format::Human::Bytes::base2($bytecount);
-    $readable = Format::Human::Bytes::base10($bytecount);
+    $readable = Format::Human::Bytes::base2($bytecount[,$decimals]);
+    $readable = Format::Human::Bytes::base10($bytecount[,$decimals]);
 
-    $readable = Format::Human::Bytes->base2($bytecount);
-    $readable = Format::Human::Bytes->base10($bytecount);
+    $readable = Format::Human::Bytes->base2($bytecount[,$decimals]);
+    $readable = Format::Human::Bytes->base10($bytecount[,$decimals]);
 
     my $fhb = Format::Human::Bytes->new();
-    $readable = $fhb->base2($bytecount);
-    $readable = $fhb->base10($bytecount);
+    $readable = $fhb->base2($bytecount[,$decimals]);
+    $readable = $fhb->base10($bytecount[,$decimals]);
 
 =head1 FUNCTIONS / METHODS
 
@@ -56,20 +56,23 @@ sub new {    # URL
 
 Callable as a function:
     
-    $readable = Format::Human::Bytes::base2($bytecount);
+    $readable = Format::Human::Bytes::base2($bytecount[,$decimals]);
 
 Callable as a class method:
 
-    $readable = Format::Human::Bytes->base2($bytecount);
+    $readable = Format::Human::Bytes->base2($bytecount[,$decimals]);
 
 Callable as a object method:
 
-    $readable = $fhb->base2($bytecount);
+    $readable = $fhb->base2($bytecount[,$decimals]);
 
 Returns the correct readable form of the given bytecount.
 
 Correct in this case means that 1kB are 1024 Bytes which is
 how computers see the world.
+
+If you specify a decimal parameter, the result number will have the
+number of decimal numbers you specified.
 
 =cut
 
@@ -81,35 +84,48 @@ sub base2 {
     ;                               # Use me as a method if you like
 
     my $Bytes = $_[0] || 0;
+    defined($Bytes) or $Bytes = 0;
+
+    my $Decimal = $_[1] || 0;
+
     if ( $Bytes > 8192000000000 ) {
-        return int( $Bytes / 1099511627776 ) . "TB";
+        return sprintf( '%0.' . $Decimal . 'f', $Bytes / 1099511627776 ) . "TB";
     }
-    elsif ( $Bytes > 8192000000 ) { return int( $Bytes / 1073741824 ) . "GB"; }
-    elsif ( $Bytes > 8192000 )    { return int( $Bytes / 1048576 ) . "MB"; }
-    elsif ( $Bytes > 8192 )       { return int( $Bytes / 1024 ) . "kB"; }
-    elsif ( $Bytes == 0 )         { return "0"; }
-    else                          { return $Bytes . "B"; }
+    elsif ( $Bytes > 8192000000 ) {
+        return sprintf( '%0.' . $Decimal . 'f', $Bytes / 1073741824 ) . "GB";
+    }
+    elsif ( $Bytes > 8192000 ) {
+        return sprintf( '%0.' . $Decimal . 'f', $Bytes / 1048576 ) . "MB";
+    }
+    elsif ( $Bytes > 8192 ) {
+        return sprintf( '%0.' . $Decimal . 'f', $Bytes / 1024 ) . "kB";
+    }
+    elsif ( $Bytes == 0 ) { return sprintf( '%0.' . $Decimal . 'f', 0 ); }
+    else { return sprintf( '%0.' . $Decimal . 'f', $Bytes ) . "B"; }
 }
 
 =head2 base10
 
 Callable as a function:
     
-    $readable = Format::Human::Bytes::base10($bytecount);
+    $readable = Format::Human::Bytes::base10($bytecount[,$decimals]);
 
 Callable as a class method:
 
-    $readable = Format::Human::Bytes->base10($bytecount);
+    $readable = Format::Human::Bytes->base10($bytecount[,$decimals]);
 
 Callable as a object method:
 
-    $readable = $fhb->base10($bytecount);
+    $readable = $fhb->base10($bytecount[,$decimals]);
 
 Returns the incorrect readable form of the given bytecount.
 
 Incorrect in this case means that 1kB is 1000 Bytes and 1 MB is
 1000000 bytes which is how some (many) people see the world, but
 it's wrong for computers.
+
+If you specify a decimal parameter, the result number will have the
+number of decimal numbers you specified.
 
 =cut
 
@@ -121,14 +137,24 @@ sub base10 {
     ;                               # Use me as a method if you like
 
     my $Bytes = $_[0] || 0;
+    defined($Bytes) or $Bytes = 0;
+
+    my $Decimal = $_[1] || 0;
+
     if ( $Bytes > 8192000000000 ) {
-        return int( $Bytes / 1000000000000 ) . "TB";
+        return sprintf( '%0.' . $Decimal . 'f', $Bytes / 1000000000000 ) . "TB";
     }
-    elsif ( $Bytes > 8192000000 ) { return int( $Bytes / 1000000000 ) . "GB"; }
-    elsif ( $Bytes > 8192000 )    { return int( $Bytes / 1000000 ) . "MB"; }
-    elsif ( $Bytes > 8192 )       { return int( $Bytes / 1000 ) . "kB"; }
-    elsif ( $Bytes == 0 )         { return "0"; }
-    else                          { return $Bytes . "B"; }
+    elsif ( $Bytes > 8192000000 ) {
+        return sprintf( '%0.' . $Decimal . 'f', $Bytes / 1000000000 ) . "GB";
+    }
+    elsif ( $Bytes > 8192000 ) {
+        return sprintf( '%0.' . $Decimal . 'f', $Bytes / 1000000 ) . "MB";
+    }
+    elsif ( $Bytes > 8192 ) {
+        return sprintf( '%0.' . $Decimal . 'f', $Bytes / 1000 ) . "kB";
+    }
+    elsif ( $Bytes == 0 ) { return sprintf( '%0.' . $Decimal . 'f', 0 ); }
+    else { return sprintf( '%0.' . $Decimal . 'f', $Bytes ) . "B"; }
 }
 
 =head1 AUTHOR
