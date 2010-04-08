@@ -1,5 +1,9 @@
 Revision history for Format-Human-Bytes
 
+0.05    2010.04.08
+        Change license to perl because of Debian people request
+        Updated POD file
+
 0.04    2009.09.29
         Allow decimals
         Rewrote and improved the tests

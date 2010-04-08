@@ -9,11 +9,11 @@ Format::Human::Bytes - Format a bytecount and make it human readable
 
 =head1 VERSION
 
-Version 0.02
+Version 0.05
 
 =cut
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 =head1 SYNOPSIS
 
@@ -32,6 +32,20 @@ humans than a simple bytecount.
     my $fhb = Format::Human::Bytes->new();
     $readable = $fhb->base2($bytecount[,$decimals]);
     $readable = $fhb->base10($bytecount[,$decimals]);
+
+All functions do "intelligent" switching to the next unit, for example:
+
+    1000 => 1000B
+    [...]
+    8000 => 8000B
+    9000 => 9kB
+
+The difference between 1000 bytes and 1500 bytes is usually bigger (for
+example because of a slow link) than between 95kB and 95,5kB. The same
+applies to 8000kB vs. 9 MB and for the other units.
+
+Depending on your usage, you may want to specify how many decimals should
+be shown (defaults to no decimals).
 
 =head1 FUNCTIONS / METHODS
 
@@ -198,14 +212,16 @@ L<http://search.cpan.org/dist/Format-Human-Bytes/>
 =back
 
 
-=head1 ACKNOWLEDGEMENTS
+=head1 HISTORY
+
+The functions are in use since late 2003 or early 2004 but I didn't pack them
+for CPAN before 2009.
 
 
-=head1 COPYRIGHT & LICENSE
+=head1 LICENSE
 
-Copyright 2009 Sebastian Willing, all rights reserved.
-
-This program is released under the following license: gpl
+This program is free software; you can redistribute it and/or
+modify it under the same terms as Perl 5 itself.
 
 
 =cut
