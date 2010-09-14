@@ -1,5 +1,8 @@
 Revision history for Format-Human-Bytes
 
+0.06    2010.09.14
+        Fix dependencies
+
 0.05    2010.04.08
         Change license to perl because of Debian people request
         Updated POD file

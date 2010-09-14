@@ -1,15 +1,15 @@
 ---
 abstract: 'Format a bytecount and make it human readable'
 author:
+  - 'Sebastian Willing, C<< <sewi at cpan.org> >>'
   - 'Sebastian Willing <sewi@cpan.org>'
 build_requires:
   ExtUtils::MakeMaker: 6.42
-  Module::Install: 0
   Test::More: 0
 configure_requires:
   ExtUtils::MakeMaker: 6.42
 distribution_type: module
-generated_by: 'Module::Install version 0.94'
+generated_by: 'Module::Install version 1.00'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -21,4 +21,4 @@ no_index:
     - t
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.05
+version: 0.06
